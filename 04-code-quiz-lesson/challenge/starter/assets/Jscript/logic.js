@@ -1,5 +1,4 @@
-// target start button and create event listener, 
-// when clicked hide start/ unhide questions and start timer
+// start the quiz
 
 var startButton = document.querySelector('#start');
 var startScreen = document.querySelector('#start-screen');
@@ -9,8 +8,11 @@ var endScreen = document.querySelector('#end-screen')
 startButton.addEventListener('click', function () {
 startScreen.setAttribute("class", "hide")
 questionsScreen.removeAttribute("class", "hide")
+
+// set timer 
+
 let timeEl = document.querySelector('#time');
-var time = 60;
+var time = 10;
 
 var timer = setInterval(function() {
     timeEl.innerHTML = time;
@@ -23,30 +25,82 @@ var timer = setInterval(function() {
 }, 1000);
 });
 
+// track current question as below:
+
  var currentQuestionIndex = 0;
  var currentQuestion = questions[currentQuestionIndex];
  var questionWrap = document.querySelector('#questions');
  var questionTitle = document.querySelector("#question-title");
  questionTitle.innerHTML = currentQuestion.title;
-// if this does not work target parent and createelement append to the end
-// if answer is incorrect substract 10 
+ 
+
+// load answers , dont change div just change innertext
+
+var choicesOutput = document.querySelector('#choices');
+var choices = currentQuestion.choices;
+
+for( var i = 0; i < choices.length; i++ ) {
+    var choice = choices[i];
+    var isCorrect = currentQuestion.answer === choice;
+
+    choicesOutput.insertAdjacentHTML('beforeend', `<button data-correct=${isCorrect}>${choice}</button`)
+}
+
+// define sound variables and functions 
+
+function playAudioCorrect () {
+    var correctAudio = document.querySelector('#audioCorrect');
+    correctAudio.play;
+};
+
+function playAudioIncorrect () {
+     var incorrectAudio = document.querySelector('#audioIncorrect');
+     incorrectAudio.play;
+};
+
+choicesOutput.addEventListener('click', function () {
+    var feedback = document.querySelector('#feedback');
+    feedback.removeAttribute("class", "feedback hide");
+    if (isCorrect) {
+
+        setTimeout(function () {
+            feedback.textContent = 'Correct answer';
+            feedback.addAttribute("class", "feedback hide");
+        }, 3000);
+        correctAudio.play;
+    } else {
+
+        setTimeout(function () {
+            feedback.textContent = 'Incorrect answer';
+            feedback.addAttribute = ("class", "feedback hide");
+        }, 3000);
+        incorrectAudio.play;
+    };
+
+});
 
 
-// set timer for feedback
-// work out logic identify current question, change innertext depending on where we are
-// add eventlistener to change question and store values
-// what are custom data attributes used for? true/false?
-//delegation listener on the parent button whenever button clicked -> feedback check answer sound effect and move to next
 
-// when we get to end of game final score is the same as timerleft
+setTimeout(function(){
+    feedback.textContent = 'Correct answer';
+}, 3000);
+
+// currentQuestionIndex += 1;
+// currentQuestion = questions[currentQuestionIndex];
+// questionTitle.innerHTML = currentQuestion.title;
+// choicesOutput.innerHTML = '';
 
 
 
+//play sound
+//feedback with setinterval add div
 
+// before next question choicesOutput.innerHTML = ''
+//move to next quesiton 
 
 // Localstorage for highscores
 
-var submitButton = document.querySelector('#submit');
+    var submitButton = document.querySelector('#submit');
 // var allResults = [];
 
 var result = {
@@ -60,4 +114,4 @@ var result = {
 submitButton.addEventListener('click', function () {
     localStorage.setItem("Result", JSON.stringify(result));
     window.open("highscores.html");
-    });
+});
