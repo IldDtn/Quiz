@@ -106,3 +106,5 @@ submitButton.addEventListener('click', function () {
     localStorage.setItem("Result", JSON.stringify(result));
     window.open("highscores.html");
 });
+
+// comment 
