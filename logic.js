@@ -53,8 +53,8 @@ for( var i = 0; i < choices.length; i++ ) {
 // const source = audioContext.createMediaElementSource(element);
 // source.connect(audioContext.destination)
 // audio.play();
-var corAudio = new Audio("assets/sfx/correct.wav");
-var incorAudio = new Audio("assets/sfx/incorrect.wav");
+var corAudio = new Audio("correct.wav");
+var incorAudio = new Audio("incorrect.wav");
 
 
 //create function to play sounds:
