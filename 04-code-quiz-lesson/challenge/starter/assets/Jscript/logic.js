@@ -47,14 +47,20 @@ for( var i = 0; i < choices.length; i++ ) {
 }
 
 // define sound variables 
-var corAudio = document.querySelector('#audioCorrect');
-var incorAudio = document.querySelector('#audioIncorrect');
 
-// create function to play sounds:
-function playSound ( soundname )   
+// const audioContext = new AudioContext();
+// const element = document.querySelector(audio);
+// const source = audioContext.createMediaElementSource(element);
+// source.connect(audioContext.destination)
+// audio.play();
+var corAudio = new Audio("assets/sfx/correct.wav");
+var incorAudio = new Audio("assets/sfx/incorrect.wav");
+
+
+//create function to play sounds:
+function playSound (soundname)   
   {
-    soundname.Play();
-    
+    soundname.play();
   };
 
 choicesOutput.addEventListener('click', function () {
