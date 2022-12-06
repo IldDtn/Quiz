@@ -46,17 +46,16 @@ for( var i = 0; i < choices.length; i++ ) {
     choicesOutput.insertAdjacentHTML('beforeend', `<button data-correct=${isCorrect}>${choice}</button`)
 }
 
-// define sound variables and functions 
+// define sound variables 
+var corAudio = document.querySelector('#audioCorrect');
+var incorAudio = document.querySelector('#audioIncorrect');
 
-function playAudioCorrect () {
-    var correctAudio = document.querySelector('#audioCorrect');
-    correctAudio.play;
-};
-
-function playAudioIncorrect () {
-     var incorrectAudio = document.querySelector('#audioIncorrect');
-     incorrectAudio.play;
-};
+// create function to play sounds:
+function playSound ( soundname )   
+  {
+    soundname.Play();
+    
+  };
 
 choicesOutput.addEventListener('click', function () {
     var feedback = document.querySelector('#feedback');
@@ -67,14 +66,11 @@ choicesOutput.addEventListener('click', function () {
             feedback.textContent = 'Correct answer';
             feedback.addAttribute("class", "feedback hide");
         }, 3000);
-        correctAudio.play;
-    } else {
-
-        setTimeout(function () {
+        playSound (corAudio);
+    } else {setTimeout(function () {
             feedback.textContent = 'Incorrect answer';
-            feedback.addAttribute = ("class", "feedback hide");
-        }, 3000);
-        incorrectAudio.play;
+            feedback.addAttribute = ("class", "feedback hide"); }, 3000);
+            playSound (incorAudio);
     };
 
 });
