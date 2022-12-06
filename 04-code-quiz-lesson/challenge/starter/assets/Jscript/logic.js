@@ -12,7 +12,7 @@ questionsScreen.removeAttribute("class", "hide")
 // set timer 
 
 let timeEl = document.querySelector('#time');
-var time = 10;
+var time = 60;
 
 var timer = setInterval(function() {
     timeEl.innerHTML = time;
@@ -71,34 +71,23 @@ choicesOutput.addEventListener('click', function () {
         setTimeout(function () {
             feedback.textContent = 'Correct answer';
             feedback.addAttribute("class", "feedback hide");
-        }, 3000);
+        }, 2000);
         playSound (corAudio);
     } else {setTimeout(function () {
             feedback.textContent = 'Incorrect answer';
-            feedback.addAttribute = ("class", "feedback hide"); }, 3000);
+            feedback.addAttribute = ("class", "feedback hide"); }, 2000);
             playSound (incorAudio);
     };
 
 });
 
 
-
-setTimeout(function(){
-    feedback.textContent = 'Correct answer';
-}, 3000);
+//move to next quesiton 
 
 // currentQuestionIndex += 1;
 // currentQuestion = questions[currentQuestionIndex];
 // questionTitle.innerHTML = currentQuestion.title;
 // choicesOutput.innerHTML = '';
-
-
-
-//play sound
-//feedback with setinterval add div
-
-// before next question choicesOutput.innerHTML = ''
-//move to next quesiton 
 
 // Localstorage for highscores
 
